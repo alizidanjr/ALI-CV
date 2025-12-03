@@ -12,13 +12,7 @@ import { useDesktop } from './desktop-context'
 
 import { BootScreen } from './boot-screen'
 
-export function Desktop() {
-    const [isBooted, setIsBooted] = React.useState(false)
-
-    if (!isBooted) {
-        return <BootScreen onComplete={() => setIsBooted(true)} />
-    }
-
+function DesktopContent() {
     const { wallpaper } = useDesktop()
 
     return (
@@ -79,5 +73,19 @@ export function Desktop() {
 
             <Taskbar />
         </div>
+    )
+}
+
+export function Desktop() {
+    const [isBooted, setIsBooted] = React.useState(false)
+
+    if (!isBooted) {
+        return <BootScreen onComplete={() => setIsBooted(true)} />
+    }
+
+    return (
+        <DesktopProvider>
+            <DesktopContent />
+        </DesktopProvider>
     )
 }
