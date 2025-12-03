@@ -49,8 +49,16 @@ export function WindowFrame({ id, children, initialPosition = { x: 100, y: 50 },
             onPointerDown={() => focusWindow(id)}
             className={cn(
                 "absolute flex flex-col bg-background border shadow-xl rounded-lg overflow-hidden",
-                "w-full h-[calc(100vh-48px)] top-0 left-0 rounded-none border-0", // Mobile styles
-                "md:w-[800px] md:h-[500px] md:rounded-lg md:border md:top-auto md:left-auto", // Desktop styles
+                // Base styles (Mobile & Desktop start at top-left)
+                "top-0 left-0",
+
+                // Mobile specific
+                "w-full h-[calc(100vh-48px)] rounded-none border-0",
+
+                // Desktop specific (md)
+                "md:w-[800px] md:h-[500px] md:rounded-lg md:border",
+                "md:max-w-[90vw] md:max-h-[80vh]", // Restore constraints
+
                 isActive ? "ring-0 md:ring-2 ring-primary/20 border-primary/50" : "border-border",
                 className
             )}
