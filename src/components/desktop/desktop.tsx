@@ -8,7 +8,10 @@ import { WindowFrame } from './window-frame'
 import { TerminalApp } from './apps/terminal-app'
 import { ProjectsApp, AboutApp, ContactApp } from './apps/wrappers'
 import { SettingsApp } from './apps/settings-app'
+import { WelcomeApp } from './apps/welcome-app'
+import { BrowserApp } from './apps/browser-app'
 import { useDesktop } from './desktop-context'
+import { ClockWidget } from './clock-widget'
 
 import { BootScreen } from './boot-screen'
 
@@ -31,8 +34,15 @@ function DesktopContent() {
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 via-purple-900/20 to-teal-900/20 animate-pulse" />
             )}
 
+            {/* Desktop Widgets */}
+            <div className="absolute top-8 right-8 z-0">
+                <ClockWidget />
+            </div>
+
             {/* Desktop Icons Area */}
             <div className="relative z-10 p-4 grid grid-cols-3 md:grid-flow-col md:grid-rows-[repeat(auto-fill,100px)] gap-4 w-full md:w-fit h-fit md:h-[calc(100vh-48px)] justify-items-center md:justify-items-start">
+                <DesktopIcon id="welcome" label="Welcome" />
+                <DesktopIcon id="browser" label="Browser" />
                 <DesktopIcon id="terminal" label="Terminal" />
                 <DesktopIcon id="projects" label="Projects" />
                 <DesktopIcon id="about" label="About Me" />
@@ -55,6 +65,12 @@ function DesktopContent() {
             </div>
 
             {/* Windows */}
+            <WindowFrame id="welcome" initialPosition={{ x: 50, y: 30 }}>
+                <WelcomeApp />
+            </WindowFrame>
+            <WindowFrame id="browser" initialPosition={{ x: 80, y: 60 }} className="md:w-[900px] md:h-[600px]">
+                <BrowserApp />
+            </WindowFrame>
             <WindowFrame id="terminal" initialPosition={{ x: 100, y: 50 }}>
                 <TerminalApp />
             </WindowFrame>

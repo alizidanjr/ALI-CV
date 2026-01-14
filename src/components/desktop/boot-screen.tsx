@@ -54,7 +54,10 @@ export function BootScreen({ onComplete }: BootScreenProps) {
     }, [onComplete])
 
     return (
-        <div className="fixed inset-0 bg-black text-green-500 font-mono p-8 z-[100] overflow-hidden flex flex-col justify-between">
+        <div
+            onClick={onComplete}
+            className="fixed inset-0 bg-black text-green-500 font-mono p-8 z-[100] overflow-hidden flex flex-col justify-between cursor-pointer"
+        >
             <div className="space-y-2">
                 {lines.map((line, index) => (
                     <motion.div
@@ -73,7 +76,7 @@ export function BootScreen({ onComplete }: BootScreenProps) {
                 />
             </div>
 
-            <div className="w-full max-w-xl mx-auto mb-20">
+            <div className="w-full max-w-xl mx-auto mb-20 pointer-events-none">
                 <div className="flex justify-between text-sm mb-2">
                     <span>LOADING SYSTEM</span>
                     <span>{progress}%</span>
@@ -84,6 +87,9 @@ export function BootScreen({ onComplete }: BootScreenProps) {
                         style={{ width: `${progress}%` }}
                     />
                 </div>
+                <p className="text-center text-xs opacity-50 mt-2 text-green-700 animate-pulse">
+                    Click anywhere to skip...
+                </p>
             </div>
         </div>
     )
