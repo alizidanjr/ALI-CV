@@ -51,8 +51,8 @@ function DesktopContent() {
 
                 {/* Resume Download Icon */}
                 <a
-                    href="/Ali Hassan CV 2025.docx"
-                    download
+                    href="/resume.pdf"
+                    download="Ali Hassan Resume-Software engineer.docx.pdf"
                     className="group flex flex-col items-center justify-center w-24 h-24 rounded-lg hover:bg-white/10 focus:bg-white/20 focus:outline-none transition-colors space-y-2"
                 >
                     <div className="p-3 bg-background/50 rounded-xl shadow-sm group-hover:scale-110 transition-transform duration-200">
