@@ -106,7 +106,7 @@ export function TerminalApp() {
   \\      /
    \`----'
                         `}</pre>
-                        <p className="text-center mt-2">☕ Take a break! You've earned it.</p>
+                        <p className="text-center mt-2">☕ Take a break! You&apos;ve earned it.</p>
                     </div>
                 )
                 break

@@ -11,21 +11,20 @@ export function BootScreen({ onComplete }: BootScreenProps) {
     const [lines, setLines] = useState<string[]>([])
     const [progress, setProgress] = useState(0)
 
-    const bootText = [
-        "BIOS Date 01/15/25 14:22:51 Ver: 1.0.0",
-        "CPU: Intel(R) Core(TM) i9-14900K CPU @ 6.00GHz",
-        "Memory Test: 65536K OK",
-        "Detecting Primary Master ... Ali Hassan Portfolio",
-        "Detecting Primary Slave ... CV Data",
-        "Booting from Hard Disk...",
-        "Loading Kernel...",
-        "Initializing Graphics System...",
-        "Mounting File System...",
-        "Starting Desktop Environment...",
-        "Welcome to AliOS v1.0"
-    ]
-
     useEffect(() => {
+        const bootText = [
+            "BIOS Date 01/15/25 14:22:51 Ver: 1.0.0",
+            "CPU: Intel(R) Core(TM) i9-14900K CPU @ 6.00GHz",
+            "Memory Test: 65536K OK",
+            "Detecting Primary Master ... Ali Hassan Portfolio",
+            "Detecting Primary Slave ... CV Data",
+            "Booting from Hard Disk...",
+            "Loading Kernel...",
+            "Initializing Graphics System...",
+            "Mounting File System...",
+            "Starting Desktop Environment...",
+            "Welcome to AliOS v1.0"
+        ]
         let currentLine = 0
         const textInterval = setInterval(() => {
             if (currentLine < bootText.length) {

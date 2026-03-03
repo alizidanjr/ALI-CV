@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react'
 import { Button } from "@/components/ui/button"
 import { useDesktop, AppId } from './desktop-context'
 import { cn } from '@/lib/utils'
-import { Monitor, Terminal, Folder, User, Mail, Settings, BookOpen, Globe } from 'lucide-react'
+import { Monitor, Terminal, Folder, User, Mail, Settings, BookOpen, Globe, Sparkles } from 'lucide-react'
 
 export function Taskbar() {
     const [isStartMenuOpen, setStartMenuOpen] = useState(false)
@@ -158,5 +158,6 @@ function getIcon(id: AppId) {
         case 'settings': return <Settings className="h-4 w-4" />
         case 'welcome': return <BookOpen className="h-4 w-4" />
         case 'browser': return <Globe className="h-4 w-4" />
+        case 'ali-gpt': return <Sparkles className="h-4 w-4" />
     }
 }

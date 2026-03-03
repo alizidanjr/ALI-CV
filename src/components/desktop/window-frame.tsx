@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useRef } from 'react'
+import React from 'react'
 import { motion, useDragControls } from 'framer-motion'
 import { X, Minus, Square } from 'lucide-react'
 import { useDesktop, AppId } from './desktop-context'
@@ -17,7 +17,6 @@ export function WindowFrame({ id, children, initialPosition = { x: 100, y: 50 },
     const { windows, closeWindow, minimizeWindow, focusWindow, activeWindowId } = useDesktop()
     const windowState = windows[id]
     const dragControls = useDragControls()
-    const constraintsRef = useRef(null)
 
     const [isMobile, setIsMobile] = React.useState(false)
 

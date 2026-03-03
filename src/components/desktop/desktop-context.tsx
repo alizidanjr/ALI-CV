@@ -2,7 +2,7 @@
 
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react'
 
-export type AppId = 'terminal' | 'projects' | 'about' | 'contact' | 'settings' | 'welcome' | 'browser'
+export type AppId = 'terminal' | 'projects' | 'about' | 'contact' | 'settings' | 'welcome' | 'browser' | 'ali-gpt'
 
 interface WindowState {
     id: AppId
@@ -33,6 +33,7 @@ const initialWindows: Record<AppId, WindowState> = {
     about: { id: 'about', title: 'about_me.txt - Notepad', isOpen: false, isMinimized: false, zIndex: 0 },
     contact: { id: 'contact', title: 'Mail', isOpen: false, isMinimized: false, zIndex: 0 },
     settings: { id: 'settings', title: 'Settings', isOpen: false, isMinimized: false, zIndex: 0 },
+    'ali-gpt': { id: 'ali-gpt', title: 'ALI GPT - AI Digital Clone', isOpen: false, isMinimized: false, zIndex: 0 },
 }
 
 export function DesktopProvider({ children }: { children: ReactNode }) {
@@ -49,7 +50,7 @@ export function DesktopProvider({ children }: { children: ReactNode }) {
         let ctx: AudioContext | null = null
         const initAudio = async () => {
             try {
-                const AudioContext = window.AudioContext || (window as any).webkitAudioContext
+                const AudioContext = window.AudioContext || (window as Window & { webkitAudioContext?: typeof window.AudioContext }).webkitAudioContext
                 ctx = new AudioContext()
                 setAudioContext(ctx)
 

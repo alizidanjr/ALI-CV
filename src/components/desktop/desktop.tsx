@@ -10,6 +10,7 @@ import { ProjectsApp, AboutApp, ContactApp } from './apps/wrappers'
 import { SettingsApp } from './apps/settings-app'
 import { WelcomeApp } from './apps/welcome-app'
 import { BrowserApp } from './apps/browser-app'
+import { AliGPTApp } from './apps/ali-gpt'
 import { useDesktop } from './desktop-context'
 import { ClockWidget } from './clock-widget'
 
@@ -48,6 +49,7 @@ function DesktopContent() {
                 <DesktopIcon id="about" label="About Me" />
                 <DesktopIcon id="contact" label="Contact" />
                 <DesktopIcon id="settings" label="Settings" />
+                <DesktopIcon id="ali-gpt" label="ALI GPT" />
 
                 {/* Resume Download Icon */}
                 <a
@@ -85,6 +87,9 @@ function DesktopContent() {
             </WindowFrame>
             <WindowFrame id="settings" initialPosition={{ x: 300, y: 170 }}>
                 <SettingsApp />
+            </WindowFrame>
+            <WindowFrame id="ali-gpt" initialPosition={{ x: 350, y: 200 }} className="md:w-[500px] md:h-[600px]">
+                <AliGPTApp />
             </WindowFrame>
 
             <Taskbar />

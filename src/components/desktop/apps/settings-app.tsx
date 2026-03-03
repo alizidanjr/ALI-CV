@@ -1,9 +1,9 @@
 "use client"
 
 import { useDesktop } from "../desktop-context"
-import { Button } from "@/components/ui/button"
+import { Monitor } from 'lucide-react'
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Monitor, Grid, Waves, Code } from "lucide-react"
+import { Grid, Waves, Code } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 export function SettingsApp() {

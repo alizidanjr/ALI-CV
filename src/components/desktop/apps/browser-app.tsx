@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import { ArrowLeft, ArrowRight, RotateCw, Globe, Search, Star } from 'lucide-react'
+import { ArrowLeft, ArrowRight, RotateCw, Globe, Star } from 'lucide-react'
+import Image from 'next/image'
 
 export function BrowserApp() {
     const [url, setUrl] = useState('https://start.alios.dev')
@@ -69,10 +69,13 @@ export function BrowserApp() {
                         rel="noreferrer"
                         className="flex items-center gap-1 hover:bg-zinc-200 px-2 py-1 rounded transition-colors"
                     >
-                        <img
+                        <Image
                             src={`https://www.google.com/s2/favicons?domain=${bm.url}`}
                             alt=""
+                            width={16}
+                            height={16}
                             className="w-4 h-4"
+                            unoptimized
                         />
                         {bm.name}
                     </a>

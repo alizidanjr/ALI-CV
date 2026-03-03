@@ -1,5 +1,4 @@
 import React from 'react'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { ScrollArea } from "@/components/ui/scroll-area"
 
 export function WelcomeApp() {
@@ -15,7 +14,7 @@ export function WelcomeApp() {
                     <section>
                         <h2 className="text-lg font-bold mb-2 text-teal-700">What is this?</h2>
                         <p>
-                            You've landed on my interactive portfolio — a creative experiment that goes beyond
+                            You&apos;ve landed on my interactive portfolio — a creative experiment that goes beyond
                             static resumes. This <strong>desktop OS environment</strong> showcases the intersection
                             of code, design, and storytelling, built with <strong>Next.js 15</strong>,
                             <strong> TypeScript</strong>, and <strong>Framer Motion</strong>.
@@ -34,7 +33,7 @@ export function WelcomeApp() {
                                 About, Projects, Terminal, and more.
                             </li>
                             <li>
-                                <strong>Taskbar:</strong> Use the "Start" button to access the menu, or click
+                                <strong>Taskbar:</strong> Use the &quot;Start&quot; button to access the menu, or click
                                 app tabs to toggle windows.
                             </li>
                             <li>
@@ -51,13 +50,13 @@ export function WelcomeApp() {
                         <h2 className="text-lg font-bold mb-2 text-teal-700">Quick Links</h2>
                         <p>
                             Download my resume from the desktop, explore my <strong>Projects</strong> to see
-                            what I've built, or check the <strong>Terminal</strong> for direct GitHub/LinkedIn links.
+                            what I&apos;ve built, or check the <strong>Terminal</strong> for direct GitHub/LinkedIn links.
                         </p>
                     </section>
 
                     <div className="mt-8 p-4 bg-zinc-100 rounded-lg border border-zinc-200">
                         <p className="font-semibold text-center italic">
-                            "Technology should amplify creativity, not replace it."
+                            &quot;Technology should amplify creativity, not replace it.&quot;
                         </p>
                         <p className="text-xs text-center text-muted-foreground mt-1">
                             — My Creative Philosophy
