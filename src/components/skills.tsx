@@ -2,21 +2,22 @@
 
 import { Badge } from "@/components/ui/badge"
 import { motion } from "framer-motion"
-import { resumeData } from "@/data/resume-data"
-
-const skillCategories = {
-    "Languages": resumeData.skills.technical.languages,
-    "Frontend": resumeData.skills.technical.frontend,
-    "Backend": resumeData.skills.technical.backend,
-    "Database": resumeData.skills.technical.database,
-    "Creative Tools": resumeData.skills.technical.creative,
-    "AI & Automation": resumeData.skills.technical.ai,
-    "Tools": resumeData.skills.technical.tools,
-    "Methodologies": resumeData.skills.methodologies,
-    "Leadership": resumeData.skills.leadership,
-}
+import { useDesktop } from "@/components/desktop/desktop-context"
 
 export function Skills() {
+    const { resume } = useDesktop()
+    const skillCategories = {
+        "Languages": resume.skills.technical.languages,
+        "Frontend": resume.skills.technical.frontend,
+        "Backend": resume.skills.technical.backend,
+        "Database": resume.skills.technical.database,
+        "Creative Tools": resume.skills.technical.creative,
+        "AI & Automation": resume.skills.technical.ai,
+        "Tools": resume.skills.technical.tools,
+        "Methodologies": resume.skills.methodologies,
+        "Leadership": resume.skills.leadership,
+    }
+
     return (
         <section id="skills" className="w-full">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

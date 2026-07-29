@@ -4,11 +4,11 @@ import React, { useState, useEffect } from 'react'
 import { Button } from "@/components/ui/button"
 import { useDesktop, AppId } from './desktop-context'
 import { cn } from '@/lib/utils'
-import { Monitor, Terminal, Folder, User, Mail, Settings, BookOpen, Globe, Sparkles } from 'lucide-react'
+import { Monitor, Terminal, Folder, User, Mail, Settings, BookOpen, Globe } from 'lucide-react'
 
 export function Taskbar() {
     const [isStartMenuOpen, setStartMenuOpen] = useState(false)
-    const { windows, activeWindowId, openWindow, minimizeWindow, focusWindow } = useDesktop()
+    const { windows, activeWindowId, openWindow, minimizeWindow, focusWindow, pdfUrl } = useDesktop()
     const [time, setTime] = useState(new Date())
 
     useEffect(() => {
@@ -73,7 +73,7 @@ export function Taskbar() {
                     <div className="h-px bg-white/10 my-2 mx-2" />
 
                     <a
-                        href="/Ali Hassan CV 2025.docx"
+                        href={pdfUrl}
                         download
                         className="flex items-center gap-3 w-full px-4 py-2 text-sm font-medium hover:bg-white/10 rounded-md transition-colors"
                     >
@@ -158,6 +158,5 @@ function getIcon(id: AppId) {
         case 'settings': return <Settings className="h-4 w-4" />
         case 'welcome': return <BookOpen className="h-4 w-4" />
         case 'browser': return <Globe className="h-4 w-4" />
-        case 'ali-gpt': return <Sparkles className="h-4 w-4" />
     }
 }

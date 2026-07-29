@@ -2,15 +2,17 @@ import React, { useState } from 'react'
 import { Button } from "@/components/ui/button"
 import { ArrowLeft, ArrowRight, RotateCw, Globe, Star } from 'lucide-react'
 import Image from 'next/image'
+import { useDesktop } from '@/components/desktop/desktop-context'
 
 export function BrowserApp() {
-    const [url, setUrl] = useState('https://start.alios.dev')
+    const { resume } = useDesktop()
+    const [url, setUrl] = useState(resume.personal.links.portfolio)
     const [isLoading, setIsLoading] = useState(false)
 
     const bookmarks = [
-        { name: 'GitHub', url: 'https://github.com/alizidanjr', icon: 'Github' },
-        { name: 'LinkedIn', url: 'https://linkedin.com/in/alizidanjr', icon: 'Linkedin' },
-        { name: 'Portfolio', url: 'https://ali-hassan.dev', icon: 'User' },
+        { name: 'GitHub', url: resume.personal.links.github, icon: 'Github' },
+        { name: 'LinkedIn', url: resume.personal.links.linkedin, icon: 'Linkedin' },
+        { name: 'Portfolio', url: resume.personal.links.portfolio, icon: 'User' },
     ]
 
     const handleSearch = (e: React.FormEvent) => {
@@ -107,10 +109,10 @@ export function BrowserApp() {
 
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4 w-full max-w-2xl">
                         {[
-                            { name: 'GitHub', url: 'https://github.com/alizidanjr', color: 'bg-zinc-900' },
-                            { name: 'LinkedIn', url: 'https://linkedin.com/in/alizidanjr', color: 'bg-blue-600' },
+                            { name: 'GitHub', url: resume.personal.links.github, color: 'bg-zinc-900' },
+                            { name: 'LinkedIn', url: resume.personal.links.linkedin, color: 'bg-blue-600' },
                             { name: 'Twitter', url: 'https://twitter.com', color: 'bg-sky-500' },
-                            { name: 'Email', url: 'mailto:alihassancut@gmail.com', color: 'bg-red-500' },
+                            { name: 'Email', url: `mailto:${resume.personal.email}`, color: 'bg-red-500' },
                         ].map((site) => (
                             <a
                                 key={site.name}

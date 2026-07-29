@@ -13,17 +13,18 @@ import { Button } from "@/components/ui/button"
 import { Github, ExternalLink, Star } from "lucide-react"
 import Link from "next/link"
 import { motion } from "framer-motion"
-import { resumeData } from "@/data/resume-data"
+import { useDesktop } from "@/components/desktop/desktop-context"
 import { useState } from "react"
 
 const categories = ["All", "Creative Coding", "Web Platforms", "AI Experiments", "Game Dev", "Academic Work"] as const
 
 export function Projects() {
+    const { resume } = useDesktop()
     const [selectedCategory, setSelectedCategory] = useState<string>("All")
 
     const filteredProjects = selectedCategory === "All"
-        ? resumeData.projects
-        : resumeData.projects.filter(p => p.category === selectedCategory)
+        ? resume.projects
+        : resume.projects.filter(p => p.category === selectedCategory)
 
     // Sort to show featured first
     const sortedProjects = [...filteredProjects].sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0))

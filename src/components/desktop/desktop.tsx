@@ -10,14 +10,14 @@ import { ProjectsApp, AboutApp, ContactApp } from './apps/wrappers'
 import { SettingsApp } from './apps/settings-app'
 import { WelcomeApp } from './apps/welcome-app'
 import { BrowserApp } from './apps/browser-app'
-import { AliGPTApp } from './apps/ali-gpt'
 import { useDesktop } from './desktop-context'
 import { ClockWidget } from './clock-widget'
+import type { Resume } from '@/lib/resume'
 
 import { BootScreen } from './boot-screen'
 
 function DesktopContent() {
-    const { wallpaper } = useDesktop()
+    const { wallpaper, pdfUrl } = useDesktop()
 
     return (
         <div className="fixed inset-0 overflow-hidden bg-zinc-950 text-zinc-50 selection:bg-teal-500/30">
@@ -49,12 +49,11 @@ function DesktopContent() {
                 <DesktopIcon id="about" label="About Me" />
                 <DesktopIcon id="contact" label="Contact" />
                 <DesktopIcon id="settings" label="Settings" />
-                <DesktopIcon id="ali-gpt" label="ALI GPT" />
 
                 {/* Resume Download Icon */}
                 <a
-                    href="/resume.pdf"
-                    download="Ali Hassan Resume-Software engineer.docx.pdf"
+                    href={pdfUrl}
+                    download="Ali Hassan Resume.pdf"
                     className="group flex flex-col items-center justify-center w-24 h-24 rounded-lg hover:bg-white/10 focus:bg-white/20 focus:outline-none transition-colors space-y-2"
                 >
                     <div className="p-3 bg-background/50 rounded-xl shadow-sm group-hover:scale-110 transition-transform duration-200">
@@ -88,16 +87,13 @@ function DesktopContent() {
             <WindowFrame id="settings" initialPosition={{ x: 300, y: 170 }}>
                 <SettingsApp />
             </WindowFrame>
-            <WindowFrame id="ali-gpt" initialPosition={{ x: 350, y: 200 }} className="md:w-[500px] md:h-[600px]">
-                <AliGPTApp />
-            </WindowFrame>
 
             <Taskbar />
         </div>
     )
 }
 
-export function Desktop() {
+export function Desktop({ resume, pdfUrl }: { resume: Resume; pdfUrl: string }) {
     const [isBooted, setIsBooted] = React.useState(false)
 
     if (!isBooted) {
@@ -105,7 +101,7 @@ export function Desktop() {
     }
 
     return (
-        <DesktopProvider>
+        <DesktopProvider resume={resume} pdfUrl={pdfUrl}>
             <DesktopContent />
         </DesktopProvider>
     )

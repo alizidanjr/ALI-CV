@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { useDesktop, AppId } from './desktop-context'
-import { Terminal, Folder, User, Mail, Settings, BookOpen, Globe, Sparkles } from 'lucide-react'
+import { Terminal, Folder, User, Mail, Settings, BookOpen, Globe } from 'lucide-react'
 
 interface DesktopIconProps {
     id: AppId
@@ -37,6 +37,5 @@ function getIcon(id: AppId) {
         case 'settings': return <Settings className="h-8 w-8 text-gray-500" />
         case 'welcome': return <BookOpen className="h-8 w-8 text-green-500" />
         case 'browser': return <Globe className="h-8 w-8 text-blue-400" />
-        case 'ali-gpt': return <Sparkles className="h-8 w-8 text-teal-400" />
     }
 }

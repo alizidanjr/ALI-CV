@@ -2,6 +2,7 @@
 
 import React, { useState, useRef, useEffect } from 'react'
 import { ScrollArea } from "@/components/ui/scroll-area"
+import { useDesktop } from '@/components/desktop/desktop-context'
 
 interface Command {
     input: string
@@ -9,6 +10,7 @@ interface Command {
 }
 
 export function TerminalApp() {
+    const { resume, pdfUrl } = useDesktop()
     const [history, setHistory] = useState<Command[]>([
         { input: '', output: 'Welcome to AliOS v1.0.0\nType "help" to see available commands.' }
     ])
@@ -46,54 +48,49 @@ export function TerminalApp() {
                 )
                 break
             case 'about':
-                output = "Ali Hassan | Creative Technology Director & Software Engineer\n" +
-                    "Currently at BIN ASSAF, integrating AI with creative storytelling.\n" +
-                    "Passionate about building scalable web platforms and innovative digital experiences.\n" +
-                    "Bridging the gap between technology, creativity, and human experience."
+                output = `${resume.personal.name} | ${resume.personal.title} & ${resume.personal.subtitle}\n` +
+                    `Currently at ${resume.experience[0]?.company ?? '—'}.\n` +
+                    `${resume.about.summary}`
                 break
             case 'creative-vision':
                 output = "🎨 Creative Philosophy:\n\n" +
-                    "\"Technology should amplify creativity, not replace it.\"\n\n" +
-                    "I believe in creating digital experiences that don't just function—they inspire.\n" +
-                    "By merging technical precision with artistic vision, I build solutions that are\n" +
-                    "both technically sound and emotionally resonant.\n\n" +
+                    `"${resume.about.philosophy}"\n\n` +
+                    `${resume.about.vision}\n\n` +
                     "Every line of code is an opportunity to tell a story. 🚀"
                 break
-            case 'projects':
-                output = "Featured Projects:\n\n" +
-                    "🌟 AliOS Portfolio - Interactive desktop OS in browser (Next.js 15)\n" +
-                    "🔐 FAN-FIX Platform - QR-enabled secure verification system\n" +
-                    "📅 TFP MODELS - Full-stack SaaS with live booking (Supabase)\n\n" +
-                    "Open the 'Projects Explorer' app for full details!"
+            case 'projects': {
+                const list = resume.projects.map(p => `🌟 ${p.title} - ${p.description}`).join('\n')
+                output = `Featured Projects:\n\n${list}\n\nOpen the 'Projects Explorer' app for full details!`
                 break
+            }
             case 'contact':
-                output = "📧 Email: alihassancut@gmail.com\n" +
-                    "📱 Phone: +20 106 550 3400\n" +
-                    "🔗 LinkedIn: linkedin.com/in/alizidanjr\n" +
-                    "💻 GitHub: github.com/alizidanjr\n" +
-                    "📍 Location: Giza, Egypt (Remote-first)"
+                output = `📧 Email: ${resume.personal.email}\n` +
+                    `📱 Phone: ${resume.personal.phone}\n` +
+                    `🔗 LinkedIn: ${resume.personal.links.linkedin.replace(/^https?:\/\//, '')}\n` +
+                    `💻 GitHub: ${resume.personal.links.github.replace(/^https?:\/\//, '')}\n` +
+                    `📍 Location: ${resume.personal.location}`
                 break
             case 'resume':
                 output = "📄 Downloading resume...\n\n" +
                     "Click the Resume icon on desktop or use:\n" +
-                    "/resume.pdf"
+                    pdfUrl
                 // Trigger download
                 setTimeout(() => {
                     const link = document.createElement('a')
-                    link.href = '/resume.pdf'
-                    link.download = 'Ali Hassan Resume-Software engineer.docx.pdf'
+                    link.href = pdfUrl
+                    link.download = `${resume.personal.name} Resume.pdf`
                     link.click()
                 }, 500)
                 break
             case 'github':
                 output = "🚀 Opening GitHub profile...\n" +
-                    "https://github.com/alizidanjr"
-                setTimeout(() => window.open('https://github.com/alizidanjr', '_blank'), 500)
+                    resume.personal.links.github
+                setTimeout(() => window.open(resume.personal.links.github, '_blank'), 500)
                 break
             case 'linkedin':
                 output = "💼 Opening LinkedIn profile...\n" +
-                    "https://linkedin.com/in/alizidanjr"
-                setTimeout(() => window.open('https://linkedin.com/in/alizidanjr', '_blank'), 500)
+                    resume.personal.links.linkedin
+                setTimeout(() => window.open(resume.personal.links.linkedin, '_blank'), 500)
                 break
             case 'coffee':
                 output = (
@@ -111,7 +108,7 @@ export function TerminalApp() {
                 )
                 break
             case 'whoami':
-                output = "ali_hassan@portfolio:~$ Creative Technology Director"
+                output = `ali_hassan@portfolio:~$ ${resume.personal.title}`
                 break
             case 'clear':
                 setHistory([])

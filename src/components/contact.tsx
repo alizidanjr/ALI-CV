@@ -5,8 +5,10 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { motion } from "framer-motion"
+import { useDesktop } from "@/components/desktop/desktop-context"
 
 export function Contact() {
+    const { resume } = useDesktop()
     return (
         <section id="contact" className="w-full py-20">
             <motion.div
@@ -21,10 +23,10 @@ export function Contact() {
                             Have a project in mind or just want to say hi? Send me a message!
                         </CardDescription>
                         <div className="mt-4 flex flex-col items-center space-y-2 text-sm text-muted-foreground">
-                            <p>alihassancut@gmail.com</p>
-                            <p>+20 106 550 3400</p>
-                            <a href="https://linkedin.com/in/alizidanjr" target="_blank" rel="noreferrer" className="hover:text-primary underline">
-                                linkedin.com/in/alizidanjr
+                            <p>{resume.personal.email}</p>
+                            <p>{resume.personal.phone}</p>
+                            <a href={resume.personal.links.linkedin} target="_blank" rel="noreferrer" className="hover:text-primary underline">
+                                {resume.personal.links.linkedin.replace(/^https?:\/\//, '')}
                             </a>
                         </div>
                     </CardHeader>

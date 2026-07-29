@@ -1,8 +1,9 @@
 "use client"
 
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react'
+import type { Resume } from '@/lib/resume'
 
-export type AppId = 'terminal' | 'projects' | 'about' | 'contact' | 'settings' | 'welcome' | 'browser' | 'ali-gpt'
+export type AppId = 'terminal' | 'projects' | 'about' | 'contact' | 'settings' | 'welcome' | 'browser'
 
 interface WindowState {
     id: AppId
@@ -21,6 +22,8 @@ interface DesktopContextType {
     focusWindow: (id: AppId) => void
     wallpaper: string
     setWallpaper: (wallpaper: string) => void
+    resume: Resume
+    pdfUrl: string
 }
 
 const DesktopContext = createContext<DesktopContextType | undefined>(undefined)
@@ -33,10 +36,9 @@ const initialWindows: Record<AppId, WindowState> = {
     about: { id: 'about', title: 'about_me.txt - Notepad', isOpen: false, isMinimized: false, zIndex: 0 },
     contact: { id: 'contact', title: 'Mail', isOpen: false, isMinimized: false, zIndex: 0 },
     settings: { id: 'settings', title: 'Settings', isOpen: false, isMinimized: false, zIndex: 0 },
-    'ali-gpt': { id: 'ali-gpt', title: 'ALI GPT - AI Digital Clone', isOpen: false, isMinimized: false, zIndex: 0 },
 }
 
-export function DesktopProvider({ children }: { children: ReactNode }) {
+export function DesktopProvider({ children, resume, pdfUrl }: { children: ReactNode; resume: Resume; pdfUrl: string }) {
     const [windows, setWindows] = useState<Record<AppId, WindowState>>(initialWindows)
     const [activeWindowId, setActiveWindowId] = useState<AppId | null>('terminal')
     const [maxZIndex, setMaxZIndex] = useState(10)
@@ -153,7 +155,7 @@ export function DesktopProvider({ children }: { children: ReactNode }) {
     }
 
     return (
-        <DesktopContext.Provider value={{ windows, activeWindowId, openWindow, closeWindow, minimizeWindow, focusWindow, wallpaper, setWallpaper }}>
+        <DesktopContext.Provider value={{ windows, activeWindowId, openWindow, closeWindow, minimizeWindow, focusWindow, wallpaper, setWallpaper, resume, pdfUrl }}>
             {children}
         </DesktopContext.Provider>
     )
